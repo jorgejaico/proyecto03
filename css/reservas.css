@@ -110,3 +110,6 @@ div.objeto form input {
     border-style: solid;
     border-width: 1px;
 }
+div.centro input {
+    border-style: none;
+}
