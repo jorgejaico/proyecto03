@@ -76,30 +76,73 @@ session_start();
 					$sql = "SELECT * FROM tbl_usuario";
 					$datos = mysqli_query($con, $sql);
 					?>
-					<table border>
+					<table border align="center">
 					<tr>
 						<th>Nombre</th>
 						<th>Correo</th>
+						<th>Permisos</th>
+						<th>Estado</th>
 						<th>Opciones</th>
 					</tr>
+
+
 
 					<?php
 
 					while ($prod = mysqli_fetch_array($datos)){
-					echo "<td>$prod[usu_nom]</td>";
-					echo "<td>$prod[usu_email]</td>";
+						echo "<tr><td>$prod[usu_nom]</td>";
+						echo "<td>$prod[usu_email]</td>";
+						if($prod['usu_rang']==0){
+							echo"<td>Administrador</td>";
+						}else{
+							echo "<td>Usuario</td>";
+						}
+
+						if($prod['activo']==1){
+							echo"<td>Habilitado</td>";
+						}else{
+							echo "<td>Deshabilitado</td>";
+						}
+						
+						if($prod['activo']==1){
+							echo "<td>";
+							echo "<a href='modificar.php?usu_nom=$prod[usu_nom]'><img width='30%' src='images/mod.png'></a>";
+							echo "&nbsp&nbsp&nbsp";
+							echo "<a href='dehabilitarActivar.php?usu_nom=$prod[usu_nom]'><img width='30%' src='images/cross.png'></a>";
+							echo "</td>";
+						}else{
+							echo "<td>";
+							echo "<a href='dehabilitarActivar.php?usu_nom=$prod[usu_nom]'><img width='30%' src='images/tic.png'></a>";
+							echo "</td>";
+
+						}
+
+					echo "</tr>";
 					}
+						//enlace a la página que modifica el producto pasándole la id (clave primaria)
+					
+
+
+					?>
+					</table><br><br>
+					
+					<a href="insertar.php"><img src="images/add.png"></a>
+
+
+					<?php
 					mysqli_close($con);
 				?>
 			</div>
 			
 			
 		</div>
+
     </body>
 </html>
 <?php
 }else{
 	$_SESSION['validarse'] = 'error';
+	
 	header("Location: index.php");
 	die();
 }

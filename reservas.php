@@ -165,7 +165,7 @@ session_start();
 								if($cerca['rec_reservado']=="1"){
 									echo "<input type='submit' value='RESERVAR'/>";
 								}else{
-									$con1 = mysqli_connect('mysql.2freehosting.com', 'u761293260_root', 'bzm5PBqzaf', 'u761293260_reser');
+									$con1 = $con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
 									$sql1 = ("SELECT * FROM `tbl_reservas` WHERE tbl_reservas.idRecurso=$id ");
 									$datos1 = mysqli_query($con1, $sql1);
 									$usuari=$_SESSION['mail'];
@@ -178,7 +178,7 @@ session_start();
 											}
 										}
 									}
-									mysqli_close($con1);
+									//mysqli_close($con1);
 								}
 								echo "</form>";
 							}
@@ -217,7 +217,7 @@ session_start();
 								if($cerca['rec_reservado']=="1"){
 									echo "<input type='submit' value='RESERVAR'/>";
 								}else{
-									$con1 = mysqli_connect('mysql.2freehosting.com', 'u761293260_root', 'bzm5PBqzaf', 'u761293260_reser');
+									$con1 = $con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
 									$sql1 = ("SELECT * FROM `tbl_reservas` WHERE tbl_reservas.idRecurso=$id ");
 									$datos1 = mysqli_query($con1, $sql1);
 									$usuari=$_SESSION['mail'];
@@ -237,7 +237,7 @@ session_start();
 							echo "</div>";
                         }
                     }
-					mysqli_close($con);
+					//mysqli_close($con);
 				?>
 			</div>
 		</div>
