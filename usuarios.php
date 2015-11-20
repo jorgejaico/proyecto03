@@ -7,7 +7,7 @@ session_start();
 	if(isset($login)){
 		if(isset($_POST['manteniment'])){
 			if(isset($_POST['manteniment']))$manteniment = $_POST['manteniment'];
-			$con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+			$con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 			//echo $manteniment;
 			$sql1=("SELECT * FROM `tbl_recursos` WHERE rec_id = $manteniment");
 			//echo $sql1;
@@ -72,7 +72,7 @@ session_start();
 			<div class="centro">
 				<h1>USUARIOS</h1>
 				<?php
-					$con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+					$con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 					$sql = "SELECT * FROM tbl_usuario";
 					$datos = mysqli_query($con, $sql);
 					?>

@@ -2,13 +2,17 @@
 session_start();
 if(isset($_SESSION['error'])) $error = $_SESSION['error'];
 if(isset($_SESSION['validarse'])) $validarse = $_SESSION['validarse'];
+if(isset($_SESSION['deshab'])) $deshab = $_SESSION['deshab'];
+
+
+
 session_destroy();
 ?>
 <!DOCTYPE html>
 <html >
 	<head>
 		<meta charset="UTF-8">
-		<title>Formulario LOGIN</title>
+		<title>LOGIN</title>
 		<link rel="stylesheet" href="css/style.css">
 		
 		<script src="js/index.js"></script>
@@ -24,6 +28,10 @@ session_destroy();
 					if(isset($validarse)){
 						echo "Antes de entrar debes validate<br/><br/><br/>";
 					}
+					if(isset($deshab)){
+						echo "Usuario deshabilitadio, habla con el administrador<br/><br/><br/>";
+					}
+
 				?>
 					<img class="profile__avatar" id="toggleProfile" src="images/logoSoloIcono.png" alt="Avatar" onclick="muestra2();"/> 
 					<div class="profile__form">

@@ -8,7 +8,7 @@ session_start();
 			if(isset($_POST['fecha'])) $fechaI = $_POST['fecha'];
 			if(isset($_POST['comentarios'])) $coment = $_POST['comentarios'];
 			$persona=$_SESSION['mail'];
-			$con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+			$con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 			$sql1 = "SELECT * FROM tbl_reservas WHERE tbl_reservas.idRecurso = '$recurs' && tbl_reservas.res_fecha_fin <= '$fechaI' ORDER BY tbl_reservas.res_fecha_fin ASC LIMIT 1";
 			//echo $sql1;
 			$inci = mysqli_query($con, $sql1);
@@ -73,7 +73,7 @@ echo "S'ha creat la incidencia correctament";
 									<select name="Problema"> 
 										<option value="Problema" required  selected >On es el problema?</option>
 											<?php
-											$con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+											$con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 											$sql = "SELECT * FROM `tbl_recursos`";
 											$datos = mysqli_query($con, $sql);
 											echo "$sql";

@@ -7,7 +7,7 @@
 	<body>
 		<?php
 			//realizamos la conexión con mysql
-			$con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+			$con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 
 			//esta consulta devuelve todos los datos del producto cuyo campo clave (pro_id) es igual a la id que nos llega por la barra de direcciones
 			$sql = "SELECT * FROM tbl_usuario WHERE usu_nom = '$_REQUEST[usu_nom]'";

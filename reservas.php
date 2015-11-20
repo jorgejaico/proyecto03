@@ -9,12 +9,22 @@ session_start();
 		if(isset($_POST['login'])){	
 			if(isset($_POST['mail']))$mail = $_POST['mail'];
 			if(isset($_POST['contraseña']))$contraseña = $_POST['contraseña'];
-			$con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+			$con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 			$sql=("SELECT * FROM `tbl_usuario` WHERE usu_email = '$mail' && usu_contra = '$contraseña' ");
 			//echo $sql;
 			$datos = mysqli_query($con, $sql);
+
+
+
+
 			if(mysqli_num_rows($datos) > 0){
 				while($send = mysqli_fetch_array($datos)){
+					if ($send['activo']==0) {
+
+						$_SESSION['deshab'] = 'deshab';
+						header("Location: index.php");
+						die();
+					}
 					$send['usu_nom'] = utf8_encode($send['usu_nom']);
 					//echo "<br/><br/>$send[usu_nom]";
 					$_SESSION['nombre']=$send['usu_nom'];
@@ -26,11 +36,14 @@ session_start();
 				header("Location: index.php");
 				die();
 			}
+
+
+
 			mysqli_close($con);
 		}
 		if(isset($_POST['manteniment'])){
 			if(isset($_POST['manteniment']))$manteniment = $_POST['manteniment'];
-			$con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+			$con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 			//echo $manteniment;
 			$sql1=("SELECT * FROM `tbl_recursos` WHERE rec_id = $manteniment");
 			echo $sql1;
@@ -54,7 +67,7 @@ session_start();
 		}
 		if(isset($_POST['reservar'])){
 			$reservar = $_POST['reservar'];
-			$con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+			$con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 			//echo $reservar;
 			$sql1=("SELECT * FROM `tbl_recursos` WHERE rec_id = $reservar");
 			//echo $sql1;
@@ -139,7 +152,7 @@ session_start();
 			<div class="principal">
 				<h1>AULES</h1>
 				<?php
-					$con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+					$con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 					$sql = ("SELECT * FROM `tbl_recursos` WHERE tbl_recursos.rec_tipo_rec = 1");
 					$datos = mysqli_query($con, $sql);
                     if(mysqli_num_rows($datos) > 0){
@@ -165,7 +178,7 @@ session_start();
 								if($cerca['rec_reservado']=="1"){
 									echo "<input type='submit' value='RESERVAR'/>";
 								}else{
-									$con1 = $con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+									$con1 = $con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 									$sql1 = ("SELECT * FROM `tbl_reservas` WHERE tbl_reservas.idRecurso=$id ");
 									$datos1 = mysqli_query($con1, $sql1);
 									$usuari=$_SESSION['mail'];
@@ -191,7 +204,7 @@ session_start();
 			<div class="aside">
 				<h1>MATERIALES</h1>
 				<?php
-					$con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+					$con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 					$sql = ("SELECT * FROM `tbl_recursos` WHERE tbl_recursos.rec_tipo_rec = 0");
 					$datos = mysqli_query($con, $sql);
                    if(mysqli_num_rows($datos) > 0){
@@ -217,7 +230,7 @@ session_start();
 								if($cerca['rec_reservado']=="1"){
 									echo "<input type='submit' value='RESERVAR'/>";
 								}else{
-									$con1 = $con = mysqli_connect('localhost', 'root', '', 'bd_reservas');
+									$con1 = $con = mysqli_connect('mysql.2freehosting.com', 'u609120829_user', 'qweQWE123', 'u609120829_bd');
 									$sql1 = ("SELECT * FROM `tbl_reservas` WHERE tbl_reservas.idRecurso=$id ");
 									$datos1 = mysqli_query($con1, $sql1);
 									$usuari=$_SESSION['mail'];
